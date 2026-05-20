@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # Grants permission to push code updates back to the repo if needed
+      contents: write # Grants permission to push code or data updates back to the repo
 
     steps:
       - name: Check out repository code
@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python environment
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # Fixed variable key name here
+          python-version: '3.10'
 
       - name: Install dependencies
         run: |
@@ -28,4 +28,4 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} 
         run: |
-          python3 src/radar_sweep.py # Changed 'python' to 'python3' here
+          python3 radar_sweep.py # Fixed: Pointing directly to the root script
