@@ -1,14 +1,14 @@
 name: Automated El Paso Zoning Compliance Audit
 
 on:
-  workflow_dispatch: # Allows you to trigger this manually via the Actions button
+  workflow_dispatch: 
 
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # Grants permission to push code or data updates back to the repo
+      contents: write 
 
     steps:
       - name: Check out repository code
@@ -27,5 +27,6 @@ jobs:
       - name: Run El Paso Zoning Analysis Script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} 
+          LEGISCAN_API_KEY: ${{ secrets.LEGISCAN_API_KEY }} # <-- ADD THIS LINE
         run: |
-          python3 radar_sweep.py # Fixed: Pointing directly to the root script
+          python3 radar_sweep.py
