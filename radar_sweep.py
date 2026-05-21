@@ -100,8 +100,15 @@ if __name__ == "__main__":
             all_rows.extend(found)
         time.sleep(0.5)
     
+    # Structural verification fallback tracking sequence
     if all_rows:
         new_df = pd.DataFrame(all_rows)
-        # Sort and save
+        # Clean duplicates and export
         new_df.drop_duplicates(subset=['Link']).to_csv(file_path, index=False)
         print(f"\n✅ SWEEP COMPLETE: Wrote {len(new_df)} bills with nuanced themes.")
+    else:
+        # Fallback safeguard matrix loop initialization 
+        columns = ['State', 'Identifier', 'Theme', 'Summary', 'Status', 'Link', 'Lat', 'Lon', 'Source']
+        empty_df = pd.DataFrame(columns=columns)
+        empty_df.to_csv(file_path, index=False)
+        print(f"\n⚠️ SWEEP COMPLETE: No active bills matched keywords. Initialized empty template file.") bills with nuanced themes.")
